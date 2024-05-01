@@ -221,6 +221,7 @@ const movePlayer = () => {
   if (newPlace.t == 2) {
     // Handle dot logic
     myBoard[player.pos].innerHTML = "";
+    newPlace.t = 0;
     player.score++;
     updateScoreAndLives();
   }
@@ -248,7 +249,7 @@ const movePlayer = () => {
     if (tempDots.length === 0) {
       // level switch will happen here
       goToNextLevel(); // Empty function for now
-      playerWins();
+    playerWins();
     }
   }
   if (player.pos !== tempPos) {
