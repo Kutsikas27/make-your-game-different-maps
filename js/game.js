@@ -69,3 +69,7 @@ const updateScoreAndLives = () => {
   game.score.innerHTML = `Score: ${player.score}`;
   game.lives.innerHTML = `Lives: ${player.lives}`;
 };
+
+const goToNextLevel = () => {
+  // empty until lelel 2 is implemented
+};

@@ -35,6 +35,12 @@ const drawBoard = (val) => {
     dot.classList.add("extraTime");
     div.append(dot);
   }
+  // exit ladder
+  if (val === 26) {
+    img.src = "img/ladder.png";
+    img.classList.add("ladder");
+    div.appendChild(img);
+  }
   game.grid.append(div);
   myBoard.push(div);
   div.t = val;

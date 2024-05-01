@@ -221,11 +221,6 @@ const movePlayer = () => {
   if (newPlace.t == 2) {
     // Handle dot logic
     myBoard[player.pos].innerHTML = "";
-    const tempDots = document.querySelectorAll(".dot");
-    if (tempDots.length === 0) {
-      playerWins();
-    }
-    newPlace.t = 0;
     player.score++;
     updateScoreAndLives();
   }
@@ -246,6 +241,15 @@ const movePlayer = () => {
     addSeconds(30);
     myBoard[player.pos].innerHTML = "";
     newPlace.t = 0;
+  }
+  if (newPlace.t == 26) {
+    // Handle exit ladder logic
+    const tempDots = document.querySelectorAll(".dot");
+    if (tempDots.length === 0) {
+      // level switch will happen here
+      goToNextLevel(); // Empty function for now
+      playerWins();
+    }
   }
   if (player.pos !== tempPos) {
     if (player.tog) {
