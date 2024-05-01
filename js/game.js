@@ -71,5 +71,5 @@ const updateScoreAndLives = () => {
 };
 
 const goToNextLevel = () => {
-  // empty until lelel 2 is implemented
+  // empty until level 2 is implemented
 };
