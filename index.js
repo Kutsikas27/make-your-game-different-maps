@@ -4,6 +4,7 @@ const board = ["pink", "blue", "green"];
 const myBoard = []; // Empty array to represent the game board
 const ghosts = []; // Array to store ghost objects
 let ghostcool = 0; // Counter for ghost movement
+let currentLevel = tempBoard; 
 const game = {
   x: "",
   y: "",
@@ -72,8 +73,10 @@ document.addEventListener("keyup", (e) => {
   }
 });
 
-startGameBtn.addEventListener("click", startGame);
-startGameBtn.addEventListener("click", playMusic);
+startGameBtn.addEventListener("click", () => {
+  startGame(tempBoard);
+  playMusic();
+});
 
 // Function to count frames per second
 const fpsCounter = () => {
@@ -249,7 +252,6 @@ const movePlayer = () => {
     if (tempDots.length === 0) {
       // level switch will happen here
       goToNextLevel(); // Empty function for now
-    playerWins();
     }
   }
   if (player.pos !== tempPos) {

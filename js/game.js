@@ -2,11 +2,11 @@
 
 let startGameBtn = document.querySelector(".btn");
 
-const createGame = () => {
+const createGame = (level) => {
   for (let i = 0; i < game.ghosts; i++) {
     createGhost();
   }
-  tempBoard.forEach((cell) => {
+  level.forEach((cell) => {
     drawBoard(cell);
   });
   for (let i = 0; i < game.size; i++) {
@@ -17,17 +17,15 @@ const createGame = () => {
   startPos();
 };
 
-const startGame = () => {
+const startGame = (level) => {
   startStopwatch();
   myBoard.length = 0;
   ghosts.length = 0;
   game.grid.innerHTML = "";
   game.x = "";
-  player.lives = 5;
-  !player.gameWin ? (player.score = 0) : (player.gameWin = false);
+
   player.gameOver = false;
-  createGame();
-  updateScoreAndLives();
+  createGame(level);
   game.grid.focus();
   game.grid.display = "grid";
   game.player.style.display = "block";
@@ -71,5 +69,8 @@ const updateScoreAndLives = () => {
 };
 
 const goToNextLevel = () => {
-  // empty until level 2 is implemented
+  if (currentLevel === tempBoard) currentLevel = tempBoard2
+  else if (currentLevel === tempBoard2) currentLevel = tempBoard3
+  else if (currentLevel === tempBoard3) playerWins();
+  startGame(currentLevel);
 };

@@ -15,6 +15,8 @@ function togglePauseModal() {
 const restartGame = () => {
   gameOverModal.style.display = "none";
   gameWinModal.style.display = "none";
+  player.score = 0;
+  player.lives = 5;
   if (
     pauseModal.style.display === "block" ||
     gameOverModal.style.display === "block" ||
@@ -22,7 +24,7 @@ const restartGame = () => {
   )
     pauseGame();
   resetStopwatch();
-  startGame();
+  startGame(tempBoard);
   if (player.powerUp) {
     stopPowerUp();
     game.player.style.backgroundColor = "lightgreen";
