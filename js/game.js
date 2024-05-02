@@ -69,8 +69,12 @@ const updateScoreAndLives = () => {
 };
 
 const goToNextLevel = () => {
-  if (currentLevel === tempBoard) currentLevel = tempBoard2
-  else if (currentLevel === tempBoard2) currentLevel = tempBoard3
-  else if (currentLevel === tempBoard3) playerWins();
-  startGame(currentLevel);
+  const levels = [tempBoard, tempBoard2, tempBoard3];
+  const currentIndex = levels.indexOf(currentLevel);
+  if (currentIndex === levels.length - 1) {
+    playerWins();
+  } else {
+    currentLevel = levels[currentIndex + 1];
+    startGame(currentLevel);
+  }
 };
