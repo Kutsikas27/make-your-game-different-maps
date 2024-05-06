@@ -30,6 +30,10 @@ const player = {
 };
 
 const keys = {
+  KeyW: false,
+  KeyA: false,
+  KeyS: false,
+  KeyD: false,
   ArrowRight: false,
   ArrowLeft: false,
   ArrowUp: false,
@@ -53,6 +57,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
 // Handle keydown events
 document.addEventListener("keydown", (e) => {
+  console.log(e.code)
   if (e.code in keys) {
     keys[e.code] = true;
   }
@@ -61,7 +66,7 @@ document.addEventListener("keydown", (e) => {
     pauseGame();
   }
   if (!game.inplay && !player.pause) {
-    // Start the game
+    // Start the geme
     player.play = requestAnimationFrame(move);
     game.inplay = true;
   }
@@ -78,14 +83,15 @@ startGameBtn.addEventListener("click", () => {
   playMusic();
 });
 
+let frames = 0;
+let prevTime = Date.now();
 // Function to count frames per second
 const fpsCounter = () => {
-  let frames = 0;
-  let prevTime = Date.now();
   const currentTime = Date.now();
   frames++;
   if (currentTime - prevTime >= 1000) {
     // Reset the frame counter every second
+    console.log(frames)
     frames = 0;
     prevTime = currentTime;
   }
@@ -117,7 +123,8 @@ const move = () => {
         gameReset();
       }
     }
-    if (!player.pause) {
+
+    if (!player.pause && !player.gameOver) {
       player.cool--; // Player cooldown slowdown
       if (player.cool < 0) {
         player.cool = -1;
@@ -199,20 +206,20 @@ const moveGhost = () => {
 
 const movePlayer = () => {
   const tempPos = player.pos; // Current position
-  if (keys.ArrowRight) {
+  if (keys.ArrowRight || keys.KeyD) {
     player.pos += 1;
     game.eye.style.left = "20%";
     game.mouth.style.left = "60%";
     player.cool = player.speed; // Set cooldown
-  } else if (keys.ArrowLeft) {
+  } else if (keys.ArrowLeft || keys.KeyA) {
     player.pos -= 1;
     game.eye.style.left = "60%";
     game.mouth.style.left = "0%";
     player.cool = player.speed; // Set cooldown
-  } else if (keys.ArrowUp) {
+  } else if (keys.ArrowUp || keys.KeyW) {
     player.pos -= game.size;
     player.cool = player.speed; // Set cooldown
-  } else if (keys.ArrowDown) {
+  } else if (keys.ArrowDown || keys.KeyS) {
     player.pos += game.size;
     player.cool = player.speed; // Set cooldown
   }

@@ -49,6 +49,7 @@ const endGame = () => {
   gameOverModal.style.display = "block";
   stopStopwatch();
   player.gameWin = false;
+  player.gameOver = true;
 };
 
 const playerWins = () => {
